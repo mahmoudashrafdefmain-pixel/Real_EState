@@ -42,8 +42,11 @@ if not st.runtime.exists():
     sys.exit(0)
 
 core_dir = Path(__file__).resolve().parent
-if str(core_dir) not in sys.path:
-    sys.path.insert(0, str(core_dir))
+root_dir = core_dir.parent
+model_dir = root_dir / "model"
+for p in [core_dir, root_dir, model_dir]:
+    if str(p) not in sys.path:
+        sys.path.insert(0, str(p))
 
 # configure global application layout and title
 st.set_page_config(
